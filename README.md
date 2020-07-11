@@ -9,7 +9,7 @@ The problem is simple. You want to buy a certain amount of nuggets, and the stor
 
 We want to visualize first in how many ways can we buy a certain amount of Nuggets. To this end we will use the [`gap`](https://www.gap-system.org) function `NrRestrictedPartitions` and the `gap` package [`jupyterviz`](https://nathancarter.github.io/jupyterviz/). We will also give some hints on how to use [`francy`](https://gap-packages.github.io/francy/). 
 
-Notice that the ammounts that we correspond with finite sums of integers in the set $\{6,9,20\}$, and thus we are talking about the semigroup $\langle 6,9,20\rangle$. We will use `numericalsgps` to work with numerical semigroups.
+Notice that the ammounts that we correspond with finite sums of integers in the set $\lbrace 6,9,20\rbrace$, and thus we are talking about the semigroup $\langle 6,9,20\rangle$. We will use `numericalsgps` to work with numerical semigroups.
 
 If you want to know more about nuggets and numerical semigroups, please refer to this [book chapter](https://link.springer.com/chapter/10.1007/978-3-030-37853-0_6), this [paper](https://www.tandfonline.com/doi/abs/10.1080/0025570X.2018.1515559?journalCode=umma20) and this [manuscript](https://arxiv.org/abs/1912.04494).
 
@@ -37,7 +37,7 @@ LoadPackage("numericalsgps");
 > true
 
 
-Let us start by showing how many ways of buying Nuggets do we have in the range $\{0,\ldots,50\}$.
+Let us start by showing how many ways of buying Nuggets do we have in the range $\lbrace 0,\ldots,50\rbrace$.
 
 ```gap
 Plot([0..50], x->NrRestrictedPartitions(x,[6,9,20]), 
@@ -148,7 +148,7 @@ p;
 
 
 
-Let us illustrate a naïve way to determine all possible ways to buy $n$ nuggets with boxes of sizes $\{s_1,\ldots,s_k\}$. The idea is quite simple, and we can draw it in a tree. We discriminate the possible ways depending on which we use the box of size $s_1$ or not, that is, $n\in\langle s_1,\ldots,s_k\}$ if either $n-s_1\in\langle s_1,\ldots,s_k\rangle$ or $n\in\langle s_2,\ldots, s_k\rangle$ (and proceed recursively). 
+Let us illustrate a naïve way to determine all possible ways to buy $n$ nuggets with boxes of sizes $\lbrace s_1,\ldots,s_k\rbrace$. The idea is quite simple, and we can draw it in a tree. We discriminate the possible ways depending on which we use the box of size $s_1$ or not, that is, $n\in\langle s_1,\ldots,s_k\rbrace$ if either $n-s_1\in\langle s_1,\ldots,s_k\rangle$ or $n\in\langle s_2,\ldots, s_k\rangle$ (and proceed recursively). 
 
 If in this process we reach a negative integer, we stop, and if we arrive to zero, then we trace the boxes we have used. We will draw this leafs of the tree as a square, and when hovering with the mouse over them, we will show the boxes used to get $n$ nuggets.
 
