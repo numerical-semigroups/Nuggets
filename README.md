@@ -378,12 +378,29 @@ JupyterSplashDot(DotEliahouGraph(FactorizationsIntegerWRTList(18,sizes)));
 
 In order to obtain a 'complete trade system' that allows us to go from any combination of boxes to any other choice, we only need to take expressions in different connected components of the above graphs, so that there is a trade connecting both connected components. 
 
-Another way to visualize possible combinations is through `DotFactorizationGraph` that shows the set of expressions of a nonnegative integer in terms of a given set of nonnegative integers depicted in a graph: the vertices are labelled with the different combinations, and in the edges shows the "distance" between factorizations. In red a minimal spanning tree is highlighted.
+Another way to visualize possible combinations is through `DotFactorizationGraph` that shows the set of expressions of a nonnegative integer in terms of a given set of nonnegative integers depicted in a graph: the vertices are labelled with the different combinations, and in the edges shows the "distance" between factorizations. In red a minimal spanning tree is highlighted. The largest distance in the minimal spanning tree is known as the catenary degree of the integer in the numerical semigroup.
 
 
 ```GAP
 JupyterSplashDot(DotFactorizationGraph(FactorizationsIntegerWRTList(100,sizes)));
 ```
 
-
 ![svg](snapshots/fact-dot.svg)
+
+```gap
+CatenaryDegree(100,S);
+```
+
+> 7
+
+It has been shown that the catenary degree strongly depends on the trades, and that it becomes eventually periodic.
+
+```gap
+Plot(Intersection(S,[0..150]), x->CatenaryDegree(x,S), 
+ rec(
+title := "catenary degree of elements in the semigroup",
+          xaxis := "n",
+yaxis := "catenary degree", type:="bar" ));
+```
+
+![catenary-degree](snapshots/plot-catenary.png)
