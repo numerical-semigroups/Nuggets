@@ -9,7 +9,7 @@ The problem is simple. You want to buy a certain amount of nuggets, and the stor
 
 We want to visualize first in how many ways can we buy a certain amount of Nuggets. To this end we will use the [`gap`](https://www.gap-system.org) function `NrRestrictedPartitions` and the `gap` package [`jupyterviz`](https://nathancarter.github.io/jupyterviz/). We will also give some hints on how to use [`francy`](https://gap-packages.github.io/francy/). 
 
-Notice that the ammounts that we correspond with finite sums of integers in the set $\lbrace 6,9,20\rbrace$, and thus we are talking about the semigroup $\langle 6,9,20\rangle$. We will use `numericalsgps` to work with numerical semigroups.
+Notice that the amounts that we correspond with finite sums of integers in the set $\lbrace 6,9,20\rbrace$, and thus we are talking about the semigroup $\langle 6,9,20\rangle$. We will use `numericalsgps` to work with numerical semigroups.
 
 If you want to know more about nuggets and numerical semigroups, please refer to this [book chapter](https://link.springer.com/chapter/10.1007/978-3-030-37853-0_6), this [paper](https://www.tandfonline.com/doi/abs/10.1080/0025570X.2018.1515559?journalCode=umma20) and this [manuscript](https://arxiv.org/abs/1912.04494).
 
@@ -340,7 +340,7 @@ FactorizationsIntegerWRTList(60,sizes);
 We can choose another trade system, and will obtain another 'trading' graph.
 
 
-```GAP 4
+```gap
 tradespreset([20,0,0],[[[10,0,0],[0,0,3]],[[3,0,0],[0,2,0]]]);
 ```
 
