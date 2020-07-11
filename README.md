@@ -63,9 +63,7 @@ type:="bar"
       ));
 ```
 
-
-
-
+![plot-ways](snapshots/plot-number-ways.png)
 
 
 Clearly for elements outside $\langle 6,9,20\rangle$ there will be no possible choice of boxes to get that specific amount of nuggets.
@@ -133,8 +131,7 @@ type:="line", name:="max # boxes",
 );
 ```
 
-
-
+![plot-min-max](snapshots/plot-ways-min-max.png)
 
 
 
@@ -145,9 +142,10 @@ Let us have a closer look at the number of ways one can buy 150 nuggets.
 p:=RestrictedPartitions(150,sizes);;
 ls:=List(p,Length);;
 Plot(Set(ls),x->Length(Filtered(ls,l->l=x)), rec(type:="pie", height:=500, 
-title:="Classifying the number of differnt ways to buy 150 Nuggets, depending on the number of boxes needed"));
+title:="Classifying the number of different ways to buy 150 Nuggets, depending on the number of boxes needed"));
 ```
 
+![pie](snapshots/pie.png)
 
 
 
@@ -160,8 +158,7 @@ yaxis:="# possibilities"));
 ```
 
 
-
-
+![frec](snapshots/frec.png)
 
 
 
@@ -245,6 +242,7 @@ treefrancy(30,sizes);
 
 
 
+![tree](snapshots/tree-fact-30.png)
 
 
 
@@ -331,18 +329,13 @@ There are several `gap` packages that offer procedures that output graphs in `do
 In order to make these outputs visible in the notebook one can use `JupyterSplashDot`.
 
 
-```GAP 4
+```GAP
 JupyterSplashDot(DotFactorizationGraph(FactorizationsIntegerWRTList(100,sizes)));
 ```
 
 
 
 
-![svg](fact-dot.svg)
+![svg](snapshots/fact-dot.svg)
 
 
-
-
-```GAP 4
-
-```
