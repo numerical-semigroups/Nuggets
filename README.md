@@ -477,7 +477,7 @@ FrobeniusNumber(S);
 ```
 >43
 
-Clearly, every integer greater than $43$ is in $S$, and if $z$ is negative, then $F-z$ is in $S$. So in order to check symmetry in $S$ we only have to deal with the interval $\{1,\ldots,42\}$.  
+Clearly, every integer greater than $43$ is in $S$, and if $z$ is negative, then $F-z$ is in $S$. So in order to check symmetry in $S$ we only have to deal with the interval $\lbrace 1,\ldots,42\rbrace$.  
 
 ```gap
 ForAll([1..42], x-> (x in S) or (43-x in S));
@@ -496,7 +496,7 @@ Genus(S);
 ```
 > 22
 
-Symmetry can also be characterized in terms of the Apéry sets of the numerical semigroup. For a given nonzero element $n$ of $S$, the Apéry set of $n$ in $S$ is defined as the set $\{s\in S \mid s-x\notin S\}$. 
+Symmetry can also be characterized in terms of the Apéry sets of the numerical semigroup. For a given nonzero element $n$ of $S$, the Apéry set of $n$ in $S$ is defined as the set $\lbrace s\in S \mid s-x\notin S\rbrace$. 
 
 Every numerical semigroup defines an orden over the integers $a\le_S b$ if $b-a\in S$. It can be shown that a numerical semigroup $S$ is symmetric if and only if there is a maximum in the Apéry set of a (any) nonzero element with respect to $\le_S$. 
 
@@ -505,4 +505,4 @@ JupyterSplashDot(DotBinaryRelation(HasseDiagramOfAperyListOfNumericalSemigroup(S
 ```
 ![hasse-apery](snapshots/hasse-apery.svg)
 
-When not specified, the Apéry set is computed with respect to the multiplicity, the least positive integer in the semigroup (in our case six). The maximum in this case is 49. In general, for a numerical semigroup $T$ the greatest element (which is then a maximal element with respect to $\le_T$, though not necessarily a maximum) in the Apéry set of $n\in T\setminus\{0\}$ is the Frobenius number of $T$ plus $n$. In our example, 49=43+6.
+When not specified, the Apéry set is computed with respect to the multiplicity, the least positive integer in the semigroup (in our case six). The maximum in this case is 49. In general, for a numerical semigroup $T$ the greatest element (which is then a maximal element with respect to $\le_T$, though not necessarily a maximum) in the Apéry set of $n\in T\setminus\lbrace 0\rbrace$ is the Frobenius number of $T$ plus $n$. In our example, 49=43+6.
