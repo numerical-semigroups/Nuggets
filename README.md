@@ -414,3 +414,49 @@ yaxis := "catenary degree", type:="bar" ));
 ```
 
 ![catenary-degree](snapshots/plot-catenary.png)
+
+We saw above a plot with the possible number of boxes required for each amount of nuggets, and as expected the number of boxes will increase as the amount of nuggets increases. There is a measure to detect how spread are this boxes (notice that the catenary degree already measures somehow this based on distances): we can compute the difference of two consecutive possible number of boxes of a fixed amount of nuggets. This invariant is known as the Delta set, and it is upper bounded from by the Delta set of the elements appearing in a minimal presentation of the semigroup.
+
+```gap
+l:=[];;
+for s in Intersection([0..50],S) do
+    Append(l,List(DeltaSet(LengthsOfFactorizationsIntegerWRTList(s,sizes)), d->[s,d]));;
+od;
+Plot(l,rec(type:="scatter",tool:="canvasjs"));
+```
+![delta](snapshots/delta-nuggets.png)
+
+The union of all Delta sets can be computed explicitly (though in general requires some complex computations).
+
+```gap
+DeltaSet(S);
+```
+> [ 1, 2, 3, 4 ]
+
+Observe that in the above plot, we have not catched all possibilities. We will extend the range, until we get all possible "deltas".
+
+```gap
+l:=[];;
+for s in Intersection([0..100],S) do
+    Append(l,List(DeltaSet(LengthsOfFactorizationsIntegerWRTList(s,sizes)), d->[s,d]));;
+od;
+Plot(l,rec(type:="scatter",tool:="canvasjs"));
+```
+![delta](snapshots/delta-nuggets-full.png)
+
+Let us see what are the "deltas" involved in our trading system.
+
+```gap
+BettiElements(S);
+```
+> [ 18, 60 ]
+
+```gap
+DeltaSet(LengthsOfFactorizationsIntegerWRTList(18,sizes));
+```
+> [1]
+
+```gap
+DeltaSet(LengthsOfFactorizationsIntegerWRTList(60,sizes));
+```
+> [1, 4]
