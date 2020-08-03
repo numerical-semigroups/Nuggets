@@ -460,3 +460,49 @@ DeltaSet(LengthsOfFactorizationsIntegerWRTList(18,sizes));
 DeltaSet(LengthsOfFactorizationsIntegerWRTList(60,sizes));
 ```
 > [1, 4]
+
+We have seen that there are two trades in the trading system of our numerical semigroup $\langle 6,9,20\rangle$ (two relations in a minimal presentation). It can be shown that the minimal number of trades is at least the number of generators (sizes of boxes) minus one, and the semigroups attaining this lower bound are known as complete intersections (precisely because its associated semigroup rings are complete intersections). 
+
+It can be shown that a numerical semigroup is a complete intersection if either it is $\mathbb{N}$ or it is a gluing of two complete intersection numerical semigroups. We say that a $S$ is a gluing of $S_1$ and $S_2$ if $S=a_1S_1+a_2S_2$, with $a_1$ an element in $S_2$ that is not a minimal generator and $a_2$ is an element of $S_1$ that is not a minimal generator. In our semigroup, $\langle 6,9,20\rangle=\langle 6,9\rangle + \langle 20\rangle=3\langle 2,3\rangle+ 20\mathbb{N}$. We can get the possible list of decompositions in the following way.
+
+```gap
+JupyterSplashDot(DotTreeOfGluingsOfNumericalSemigroup(S));
+```
+![tree-gluings](snapshots/tree-gluings.svg)
+
+Complete intersection numerical semigroups are symmetric, meaning that for any integer $z$, either $z$ is in the semigroup of $F-z$ is in the semigroup, where $F$ is the Frobenius number of the semigroup (the largest amount of integer that is not representable with the given set of sizes of boxes). Recall that the Frobenius number of $S$ is 43.
+
+```gap
+FrobeniusNumber(S);
+```
+>43
+
+Clearly, every integer greater than $43$ is in $S$, and if $z$ is negative, then $F-z$ is in $S$. So in order to check symmetry in $S$ we only have to deal with the interval $\{1,\ldots,42\}$.  
+
+```gap
+ForAll([1..42], x-> (x in S) or (43-x in S));
+```
+> true
+
+Symmetry implies that the Frobenius number must be odd, and that there are as many gaps as non gaps below the Frobenius number. In a numerical semigroup, the genus (the number of gaps) is always at least one half of the Frobenius number of the semigroup plus one. Symmetric numerical semigroups are precisely those semigroups attaining this bound, or equivalently, they are maximal (with respect to set inclusion) in the set of all numerical semigroups having the same (odd) Frobenius number. 
+
+```gap
+Genus(S);
+```
+> 22
+
+```gap
+(FrobeniusNumber(S)+1)/2;
+```
+> 22
+
+Symmetry can also be characterized in terms of the Apéry sets of the numerical semigroup. For a given nonzero element $n$ of $S$, the Apéry set of $n$ in $S$ is defined as the set $\{s\in S \mid s-x\notin S\}$. 
+
+Every numerical semigroup defines an orden over the integers $a\le_S b$ if $b-a\in S$. It can be shown that a numerical semigroup $S$ is symmetric if and only if there is a maximum in the Apéry set of a (any) nonzero element with respect to $\le_S$. 
+
+```gap
+JupyterSplashDot(DotBinaryRelation(HasseDiagramOfAperyListOfNumericalSemigroup(S)));
+```
+![hasse-apery](snapshots/hasse-apery.svg)
+
+When not specified, the Apéry set is computed with respect to the multiplicity, the least positive integer in the semigroup (in our case six). The maximum in this case is 49. In general, for a numerical semigroup $T$ the greatest element (which is then a maximal element with respect to $\le_T$, though not necessarily a maximum) in the Apéry set of $n\in T\setminus\{0\}$ is the Frobenius number of $T$ plus $n$. In our example, 49=43+6.
