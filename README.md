@@ -463,7 +463,17 @@ DeltaSet(LengthsOfFactorizationsIntegerWRTList(60,sizes));
 
 We have seen that there are two trades in the trading system of our numerical semigroup $\langle 6,9,20\rangle$ (two relations in a minimal presentation). It can be shown that the minimal number of trades is at least the number of generators (sizes of boxes) minus one, and the semigroups attaining this lower bound are known as complete intersections (precisely because its associated semigroup rings are complete intersections). 
 
+```gap
+IsCompleteIntersection(S);
+```
+> true
+
 It can be shown that a numerical semigroup is a complete intersection if either it is $\mathbb{N}$ or it is a gluing of two complete intersection numerical semigroups. We say that a $S$ is a gluing of $S_1$ and $S_2$ if $S=a_1S_1+a_2S_2$, with $a_1$ an element in $S_2$ that is not a minimal generator and $a_2$ is an element of $S_1$ that is not a minimal generator. In our semigroup, $\langle 6,9,20\rangle=\langle 6,9\rangle + \langle 20\rangle=3\langle 2,3\rangle+ 20\mathbb{N}$. We can get the possible list of decompositions in the following way.
+
+```gap
+AsGluingOfNumericalSemigroups(S);
+```
+> [ [ [ 6, 9 ], [ 20 ] ], [ [ 6, 20 ], [ 9 ] ] ]
 
 ```gap
 JupyterSplashDot(DotTreeOfGluingsOfNumericalSemigroup(S));
@@ -481,6 +491,11 @@ Clearly, every integer greater than $43$ is in $S$, and if $z$ is negative, then
 
 ```gap
 ForAll([1..42], x-> (x in S) or (43-x in S));
+```
+> true
+
+```gap
+IsSymmetric(S);
 ```
 > true
 
@@ -506,3 +521,22 @@ JupyterSplashDot(DotBinaryRelation(HasseDiagramOfAperyListOfNumericalSemigroup(S
 ![hasse-apery](snapshots/hasse-apery.svg)
 
 When not specified, the Apéry set is computed with respect to the multiplicity, the least positive integer in the semigroup (in our case six). The maximum in this case is 49. In general, for a numerical semigroup $T$ the greatest element (which is then a maximal element with respect to $\le_T$, though not necessarily a maximum) in the Apéry set of $n\in T\setminus\lbrace 0\rbrace$ is the Frobenius number of $T$ plus $n$. In our example, 49=43+6.
+
+Another characterization of symmetric numerical semigroups is that they are irreducible numerical semigroups with odd Frobenius number. A numerical semigroup is said to be irreducible if it cannot be expressed as the intersection of two numerical semigroups properly containing it.
+
+```gap
+IsIrreducible(S);
+```
+> true
+
+Indeed, the proportion of complete intersections compared with irreducibles is relatively small.
+
+```gap
+Length(CompleteIntersectionNumericalSemigroupsWithFrobeniusNumber(43));
+```
+> 31
+
+```gap
+Length(IrreducibleNumericalSemigroupsWithFrobeniusNumber(43));
+```
+> 546
