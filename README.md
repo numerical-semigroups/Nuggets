@@ -511,7 +511,7 @@ Genus(S);
 ```
 > 22
 
-We can plot the small elements and gaps of out monoid. Gaps will be in red (thanks [@nathancarter](https://nathancarter.github.io/) for showing how to choose colors for vertices).
+We can plot the small elements and gaps of our monoid. Gaps will be in red (thanks [@nathancarter](https://nathancarter.github.io/) for showing how to choose colors for vertices).
 
 ```gap
 ns:=[];;
