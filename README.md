@@ -146,7 +146,7 @@ p;
 
 > [ [ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 9, 9, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 9, 9, 9, 9, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 9, 9, 9, 9, 9, 9, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 9, 9, 9, 9, 9, 9, 9, 9, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 6, 6, 6, 6, 6, 6, 6 ], [ 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 6, 6, 6, 6 ], [ 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 6 ], [ 20, 20, 20, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 20, 20, 20, 9, 9, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 20, 20, 20, 9, 9, 9, 9, 6, 6, 6, 6, 6, 6, 6, 6, 6 ], [ 20, 20, 20, 9, 9, 9, 9, 9, 9, 6, 6, 6, 6, 6, 6 ], [ 20, 20, 20, 9, 9, 9, 9, 9, 9, 9, 9, 6, 6, 6 ], [ 20, 20, 20, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 ], [ 20, 20, 20, 20, 20, 20, 6, 6, 6, 6, 6 ], [ 20, 20, 20, 20, 20, 20, 9, 9, 6, 6 ] ]
 
-We can, for every possible choice, plot the number of boxes needed for each "realizable" amount of nuggets
+We can, for every possible choice, plot the number of boxes needed for each "realizable" amount of nuggets (thanks to [@nathancarter](https://nathancarter.github.io/) for showing how to do scatter plots)
 
 ```gap
 l:=[];;
@@ -510,6 +510,28 @@ Genus(S);
 (FrobeniusNumber(S)+1)/2;
 ```
 > 22
+
+We can plot the small elements and gaps of out monoid. Gaps will be in red (thanks [@nathancarter](https://nathancarter.github.io/) for showing how to choose colors for vertices).
+
+```gap
+ns:=[];;
+for i in [0..43] do
+    Add(ns,rec( data := rec( id := String(i) ), position:=rec(x:=50*i,y:=0) ));
+od;
+st:=[rec(selector := "node", style := rec( content := "data(id)" ))];;
+for i in Intersection(Gaps(S),[0..43]) do
+    Add(st, rec(selector := Concatenation("#",String(i)), style := rec( backgroundColor := "red" ))); 
+od;
+
+CreateVisualization( rec(
+    tool := "cytoscape",
+    height := 100,
+    data := rec(elements := ns,layout := rec( name := "preset" ),style := st)
+    ) 
+);
+```
+
+![elements-gaps](snapshots/elements-gaps.png)
 
 Symmetry can also be characterized in terms of the Apéry sets of the numerical semigroup. For a given nonzero element $n$ of $S$, the Apéry set of $n$ in $S$ is defined as the set $\lbrace s\in S \mid s-x\notin S\rbrace$. 
 
