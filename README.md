@@ -562,3 +562,45 @@ Length(CompleteIntersectionNumericalSemigroupsWithFrobeniusNumber(43));
 Length(IrreducibleNumericalSemigroupsWithFrobeniusNumber(43));
 ```
 > 546
+
+We can plot the elements and gaps of our monoid modulo six (the multiplicity).
+
+```gap
+S:=NumericalSemigroup(6,9,20);;
+ns:=[];;
+
+for i in [0..43] do
+    Add(ns,rec( data := rec( id := String(i) ), position:=rec(x:=50*(i mod 6),y:=50*Int(i/6)) ));
+od;
+st:=[rec(selector := "node", style := rec( content := "data(id)" ))];;
+for i in Intersection(Gaps(S),[0..43]) do
+    Add(st, rec(selector := Concatenation("#",String(i)), style := rec( backgroundColor := "red", shape:="rectangle" ))); 
+od;
+for i in Intersection(SmallElements(S),[0..43]) do
+    Add(st, rec(selector := Concatenation("#",String(i)), style := rec( backgroundColor := "blue", shape:="rectangle" ))); 
+od;
+
+CreateVisualization( rec(
+    tool := "cytoscape",
+    height := 400,
+    data := rec(elements := ns,layout := rec( name := "preset" ),style := st)
+    ) 
+);
+```
+
+![elements-gaps](snapshots/elements-multiplicity.png)
+
+The heights of the columns of the red "columns" is known as the Kunz coordinates of the semigroup, and it uniquely determines it. This allows, for a fixed element in the semigroup, to make a one to one correspondence between the numerical semigroups having this element and a set of integer cones in a polytope.
+
+```gap
+KunzCoordinates(S);
+```
+> [ 8, 3, 1, 6, 4 ]
+
+
+```gap
+KunzPolytope(6);
+```
+> [ [ 1, 0, 0, 0, 0, -1 ], [ 0, 1, 0, 0, 0, -1 ], [ 0, 0, 1, 0, 0, -1 ], [ 0, 0, 0, 1, 0, -1 ], [ 0, 0, 0, 0, 1, -1 ], [ 2, -1, 0, 0, 0, 0 ], [ 1, 1, -1, 0, 0, 0 ], [ 1, 0, 1, -1, 0, 0 ], [ 1, 0, 0, 1, -1, 0 ], [ 0, 2, 0, -1, 0, 0 ], [ 0, 1, 1, 0, -1, 0 ], [ -1, 1, 0, 0, 1, 1 ], [ -1, 0, 1, 1, 0, 1 ], [ 0, -1, 1, 0, 1, 1 ], [ 0, -1, 0, 2, 0, 1 ], [ 0, 0, -1, 1, 1, 1 ], [ 0, 0, 0, -1, 2, 1 ] ]
+
+Every element $[a_1,a_2,a_3,a_4,a_5,b]$ in this list corresponds to the inequality $a_1x_1+a_2x_2+a_3x_3+a_4x_4+a_5x_5+b\ge 0$.
