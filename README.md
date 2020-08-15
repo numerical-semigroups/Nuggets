@@ -533,7 +533,7 @@ CreateVisualization( rec(
 
 ![elements-gaps](snapshots/elements-gaps.png)
 
-Symmetry can also be characterized in terms of the Apéry sets of the numerical semigroup. For a given nonzero element $n$ of $S$, the Apéry set of $n$ in $S$ is defined as the set $\lbrace s\in S \mid s-x\notin S\rbrace$. 
+Symmetry can also be characterized in terms of the Apéry sets of the numerical semigroup. For a given nonzero element $n$ of $S$, the Apéry set of $n$ in $S$ is defined as the set $\lbrace s\in S \mid s-n\notin S\rbrace$. 
 
 Every numerical semigroup defines an orden over the integers $a\le_S b$ if $b-a\in S$. It can be shown that a numerical semigroup $S$ is symmetric if and only if there is a maximum in the Apéry set of a (any) nonzero element with respect to $\le_S$. 
 
