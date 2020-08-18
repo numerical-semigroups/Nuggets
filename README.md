@@ -444,6 +444,21 @@ Plot(l,rec(type:="scatter",tool:="canvasjs"));
 ```
 ![delta](snapshots/delta-nuggets-full.png)
 
+Let us customize this plot without colors.
+```gap
+dataSeries := JUPVIZMakePlotDataSeries(l);;
+c:=ConvertDataSeriesForTool.canvasjs([dataSeries]);;
+c.theme:="light1";;
+c.data[1].type:="scatter";;
+c.data[1].markerType:="circle";;
+c.data[1].color:="blue";;
+c.axisX:=rec(interval:=5);;
+c.axisY:=rec(interval:=1);;
+c.height:=250;;
+CreateVisualization(rec(tool := "canvasjs",data:=c));
+```
+![delta](snapshots/delta-nuggets-custom.png)
+
 Let us see what are the "deltas" involved in our trading system.
 
 ```gap
