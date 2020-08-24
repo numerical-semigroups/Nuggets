@@ -605,6 +605,8 @@ CreateVisualization( rec(
 
 ![elements-gaps](snapshots/elements-multiplicity.png)
 
+Observe that from this picture one easily guess the Apéry set of 6 in the numerical semigorup. 
+
 The heights of the columns of the red "columns" is known as the Kunz coordinates of the semigroup, and it uniquely determines it. This allows, for a fixed element in the semigroup, to make a one to one correspondence between the numerical semigroups having this element and a set of integer cones in a polytope.
 
 ```gap
@@ -619,3 +621,40 @@ KunzPolytope(6);
 > [ [ 1, 0, 0, 0, 0, -1 ], [ 0, 1, 0, 0, 0, -1 ], [ 0, 0, 1, 0, 0, -1 ], [ 0, 0, 0, 1, 0, -1 ], [ 0, 0, 0, 0, 1, -1 ], [ 2, -1, 0, 0, 0, 0 ], [ 1, 1, -1, 0, 0, 0 ], [ 1, 0, 1, -1, 0, 0 ], [ 1, 0, 0, 1, -1, 0 ], [ 0, 2, 0, -1, 0, 0 ], [ 0, 1, 1, 0, -1, 0 ], [ -1, 1, 0, 0, 1, 1 ], [ -1, 0, 1, 1, 0, 1 ], [ 0, -1, 1, 0, 1, 1 ], [ 0, -1, 0, 2, 0, 1 ], [ 0, 0, -1, 1, 1, 1 ], [ 0, 0, 0, -1, 2, 1 ] ]
 
 Every element $[a_1,a_2,a_3,a_4,a_5,b]$ in this list corresponds to the inequality $a_1x_1+a_2x_2+a_3x_3+a_4x_4+a_5x_5+b\ge 0$.
+
+There is still another way to produce the above picture directly using html.
+
+```gap
+r:="""
+<canvas id="canvas123" width="150" height="220"></canvas>
+<script type="application/javascript">
+var canvas = document.getElementById('canvas123');
+var context = canvas.getContext('2d');
+var x,y,i;
+var s = [ 0, 6, 9, 12, 15, 18, 20, 21, 24, 26, 27, 29, 30, 32, 33, 35, 36, 38, 39, 40, 41, 42, 44 ];
+var len = s.length;
+context.font = '16px courier';
+for (i=0; i < len;i++) {
+x= s[i] % 6; y = (s[i]-x)/6;
+context.fillStyle = '#9090ff';
+context.fillRect(x * 25, y * 25, 24, 24);
+context.fillStyle = 'white';
+context.fillText(s[i],x*25+12-context.measureText(s[i]).width/2,y*25+17);
+}
+var g = [ 1, 2, 3, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 22, 23, 25, 28, 31, 34, 37, 43 ];
+var len = g.length;
+context.font = '16px courier';
+for (i=0; i < len;i++) {
+x= g[i] % 6; y = (g[i]-x)/6;
+context.fillStyle = '#ff5050';
+context.fillRect(x * 25, y * 25, 24, 24);
+context.fillStyle = 'white';
+context.fillText(g[i],x*25+12-context.measureText(g[i]).width/2,y*25+17);
+}
+</script>
+""";;
+
+Objectify( JupyterRenderableType, rec(  data := rec( ("text/html") := r ), metadata:=rec() ));
+```
+
+![elements-gaps-html](snapshots/elements-multiplicity-html.png)
